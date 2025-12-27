@@ -15,7 +15,7 @@ class Database:
             config = json.load(file)
 
         connection_string = (
-            f"DRIVER={{{config['driver']}}};"
+            f"DRIVER={config['driver']};"
             f"SERVER={config['server']};"
             f"DATABASE={config['database']};"
             f"UID={config['username']};"
