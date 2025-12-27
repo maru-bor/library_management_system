@@ -1,0 +1,7 @@
+{
+    "server": "15.0.2000.5",
+    "database": "db_library",
+    "username": "sa",
+    "password": "mariebordat159",
+    "driver": "ODBC Driver 17 for SQL Server"
+}
