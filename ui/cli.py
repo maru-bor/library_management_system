@@ -19,3 +19,27 @@ class ConsoleUI:
                     return
 
             print("invalid choice")
+
+    def main_menu(self):
+        menu_items = [
+            MenuItem("1", "books", self.books_menu),
+            MenuItem("0", "end program", self.exit_app)
+        ]
+        self.run_menu("Library Management System", menu_items)
+
+    def books_menu(self):
+        menu_items = [
+            MenuItem("1", "show all books", self.show_books),
+            # MenuItem("2", "add new book", self.add_book),
+            MenuItem("0", "back", self.main_menu)
+        ]
+        self.run_menu("books", menu_items)
+
+    def show_books(self):
+        books = self.book_dao.get_all()
+        for book in books:
+            print(book)
+
+    def exit_app(self):
+        print("ukončuji aplikaci")
+        exit()

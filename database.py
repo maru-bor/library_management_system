@@ -11,7 +11,7 @@ class Database:
         return cls._instance
 
     def _connect(self):
-        with open("config/db_config.json", "r") as file:
+        with open("db_config.json", "r") as file:
             config = json.load(file)
 
         connection_string = (
