@@ -30,7 +30,7 @@ class ConsoleUI:
     def books_menu(self):
         menu_items = [
             MenuItem("1", "show all books", self.show_books),
-            # MenuItem("2", "add new book", self.add_book),
+            MenuItem("2", "add new book", self.add_book),
             MenuItem("0", "back", self.main_menu)
         ]
         self.run_menu("books", menu_items)
@@ -41,5 +41,5 @@ class ConsoleUI:
             print(book)
 
     def exit_app(self):
-        print("ukončuji aplikaci")
+        print("ending program")
         exit()
