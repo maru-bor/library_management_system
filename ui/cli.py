@@ -16,9 +16,13 @@ class ConsoleUI:
             for item in menu_items:
                 if item.key == choice:
                     item.execute()
-                    return
+                    if item.action.__name__ in ("main_menu",):
+                        return
 
-            print("invalid choice")
+                    break
+
+            else:
+                print("invalid choice")
 
     def main_menu(self):
         menu_items = [
@@ -40,6 +44,17 @@ class ConsoleUI:
         for book in books:
             print(book)
 
+    def add_book(self):
+        name = input("name of book: ")
+        publish_date = input("publish date (yyyy-mm-dd): ")
+        price = float(input("price: "))
+        author_id = int(input("author ID: "))
+        genre_id = int(input("genre ID: "))
+
+        self.book_dao.insert_book(name, publish_date, price, author_id, genre_id)
+        print("Book added successfully")
+
+
     def exit_app(self):
-        print("ending program")
+        print("Ending program")
         exit()
