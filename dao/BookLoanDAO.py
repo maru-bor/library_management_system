@@ -31,7 +31,58 @@ class BookLoanDAO:
                            insert into book_loans (loan_date, due_date, return_date, loan_state, reader_id, book_id)
                            values (?, ?, ?, 'active', ?, ?)
                        """, today, due, None, reader_id, book_id)
+
             cursor.execute("update books set is_available = 0 where id = ?", book_id)
+            self.connection.commit()
+        except Exception as e:
+            self.connection.rollback()
+            raise e
+        finally:
+            self.connection.autocommit = True
+
+    def return_loan(self, loan_id):
+        cursor = self.connection.cursor()
+        try:
+            self.connection.autocommit = False
+
+            cursor.execute("select book_id from book_loans where id = ?", loan_id)
+            row = cursor.fetchone()
+            if not row:
+                raise Exception("Book loan not found")
+            book_id = row.book_id
+
+            cursor.execute("""
+                           update book_loans
+                           set return_date = ?, loan_state = 'returned'
+                           where id = ?
+                       """, date.today(), loan_id)
+
+            cursor.execute("update books set is_available = 1 where id = ?", book_id)
+
+            self.connection.commit()
+        except Exception as e:
+            self.connection.rollback()
+            raise e
+        finally:
+            self.connection.autocommit = True
+
+    def delete_loan(self, loan_id):
+        cursor = self.connection.cursor()
+        try:
+            self.connection.autocommit = False
+
+            cursor.execute("select book_id, loan_state from book_loans where id = ?", loan_id)
+            row = cursor.fetchone()
+            if not row:
+                raise Exception("Book loan not found")
+            book_id = row.book_id
+            loan_state = row.loan_state
+
+            if loan_state == 'active':
+                cursor.execute("update books set is_available = 1 where id = ?", book_id)
+
+            cursor.execute("delete from book_loans where id = ?", loan_id)
+
             self.connection.commit()
         except Exception as e:
             self.connection.rollback()
