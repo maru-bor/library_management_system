@@ -1,11 +1,48 @@
 from dao.BookDAO import BookDAO
 from dao.BookLoanDAO import BookLoanDAO
+from dao.AuthorDAO import AuthorDAO
+from dao.ReaderDAO import ReaderDAO
+from dao.GenreDAO import GenreDAO
 from ui.menu_item import MenuItem
+from datetime import datetime
 
 class ConsoleUI:
     def __init__(self):
         self.book_dao = BookDAO()
         self.loan_dao = BookLoanDAO()
+        self.author_dao = AuthorDAO()
+        self.reader_dao = ReaderDAO()
+        self.genre_dao = GenreDAO()
+
+    def input_non_empty_string(self, prompt):
+        while True:
+            value = input(prompt).strip()
+            if value:
+                return value
+            print("Input cannot be empty.")
+
+    def input_int(self, prompt):
+        while True:
+            try:
+                return int(input(prompt))
+            except ValueError:
+                print("Please enter a valid integer.")
+
+    def input_float(self, prompt):
+        while True:
+            try:
+                return float(input(prompt))
+            except ValueError:
+                print("Please enter a valid number.")
+
+    def input_date(self, prompt):
+        while True:
+            value = input(prompt)
+            try:
+                datetime.strptime(value, "%Y-%m-%d")
+                return value
+            except ValueError:
+                print("Invalid date format. Use YYYY-MM-DD.")
 
     def run_menu(self, title, menu_items):
         while True:
@@ -30,6 +67,9 @@ class ConsoleUI:
         menu_items = [
             MenuItem("1", "Book loans", self.book_loans_menu),
             MenuItem("2", "Books", self.books_menu),
+            MenuItem("3", "Authors", self.authors_menu),
+            MenuItem("4", "Readers", self.readers_menu),
+            MenuItem("5", "Genres", self.genres_menu),
             MenuItem("0", "End program", self.exit_app)
         ]
         self.run_menu("Library Management System", menu_items)
@@ -99,6 +139,45 @@ class ConsoleUI:
             print("Loan deleted successfully")
         except Exception as e:
             print("Error while deleting loan:", e)
+
+    def authors_menu(self):
+        menu_items = [
+            MenuItem("1", "Show all authors", self.show_authors),
+            MenuItem("2", "Add author", self.add_author),
+            MenuItem("3", "Delete author", self.delete_author),
+            MenuItem("0", "Back", self.main_menu)
+        ]
+        self.run_menu("Authors", menu_items)
+
+    def show_authors(self):
+        try:
+            authors = self.author_dao.get_all_authors()
+            for a in authors:
+                print(a)
+        except Exception as e:
+            print("Error:", e)
+
+
+    def add_author(self):
+        first_name = self.input_non_empty_string("First name: ")
+        surname = self.input_non_empty_string("Surname: ")
+
+        try:
+            self.author_dao.create_author(first_name, surname)
+            print("Author created.")
+        except Exception as e:
+            print("Error:", e)
+
+
+    def delete_author(self):
+        author_id = self.input_int("Author ID: ")
+
+        try:
+            self.author_dao.delete_author(author_id)
+            print("Author deleted.")
+        except Exception as e:
+            print("Error:", e)
+
 
     def exit_app(self):
         print("Ending program")
