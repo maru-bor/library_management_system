@@ -15,6 +15,17 @@ class BookLoanDAO:
            """)
         return cursor.fetchall()
 
+    def get_loan_by_id(self, loan_id):
+        cursor = self.connection.cursor()
+        cursor.execute("""
+                  select bl.id, r.first_name, r.surname, b.book_name, bl.loan_date, bl.due_date, bl.return_date, bl.loan_state
+                  from book_loans bl
+                  join readers r on bl.reader_id = r.id
+                  join books b on bl.book_id = b.id
+                  where bl.id = ?
+              """, (loan_id,))
+        return cursor.fetchone()
+
     def create_loan(self, reader_id, book_id, loan_days=14):
         cursor = self.connection.cursor()
         try:
