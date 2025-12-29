@@ -164,7 +164,7 @@ class ConsoleUI:
 
         try:
             self.author_dao.create_author(first_name, surname)
-            print("Author created.")
+            print("Author successfully created.")
         except Exception as e:
             print("Error:", e)
 
@@ -174,10 +174,52 @@ class ConsoleUI:
 
         try:
             self.author_dao.delete_author(author_id)
-            print("Author deleted.")
+            print("Author successfully deleted.")
         except Exception as e:
             print("Error:", e)
 
+    def readers_menu(self):
+        menu_items = [
+            MenuItem("1", "Show all readers", self.show_readers),
+            MenuItem("2", "Add reader", self.add_reader),
+            MenuItem("3", "Delete reader", self.delete_reader),
+            MenuItem("0", "Back", self.main_menu)
+        ]
+        self.run_menu("Readers", menu_items)
+
+    def show_readers(self):
+        try:
+            readers = self.reader_dao.get_all_readers()
+            for r in readers:
+                print(r)
+        except Exception as e:
+            print("Error:", e)
+
+        input("Press enter to continue...")
+
+    def add_reader(self):
+        first_name = self.input_non_empty_string("First name: ")
+        surname = self.input_non_empty_string("Surname: ")
+        email = self.input_non_empty_string("Email: ")
+
+        try:
+            self.reader_dao.create_reader(first_name, surname, email)
+            print("Reader created.")
+        except Exception as e:
+            print("Error:", e)
+
+        input("Press enter to continue...")
+
+    def delete_reader(self):
+        reader_id = self.input_int("Reader ID: ")
+
+        try:
+            self.reader_dao.delete_reader(reader_id)
+            print("Reader deleted.")
+        except Exception as e:
+            print("Error:", e)
+
+        input("Press enter to continue...")
 
     def exit_app(self):
         print("Ending program")
