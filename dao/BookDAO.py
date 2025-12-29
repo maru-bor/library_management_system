@@ -18,7 +18,7 @@ class BookDAO:
     def get_all_books(self):
         cursor = self.connection.cursor()
         cursor.execute(
-            "select id, book_name, price, is_available from books"
+            "select id, book_name, publish_date, price, is_available, author_id, genre_id from books"
         )
         return cursor.fetchall()
 
