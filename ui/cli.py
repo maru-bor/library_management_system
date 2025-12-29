@@ -120,52 +120,66 @@ class ConsoleUI:
         self.run_menu("Genres", menu_items)
 
     def show_books(self):
-        books = self.book_dao.get_all_books()
-        for book in books:
-            print(book)
+        try:
+            books = self.book_dao.get_all_books()
+            for book in books:
+                print(book)
+        except Exception as e:
+            print("Error while fetching books:", e)
+
 
     def add_book(self):
-        name = input("name of book: ")
-        publish_date = input("publish date (yyyy-mm-dd): ")
-        price = float(input("price: "))
-        author_id = int(input("author ID: "))
-        genre_id = int(input("genre ID: "))
+        name = self.input_non_empty_string("Name of book: ")
+        publish_date = self.input_date("Publish date (YYYY-MM-DD): ")
+        price = self.input_float("Price: ")
+        author_id = self.input_int("Author ID: ")
+        genre_id = self.input_int("Genre ID: ")
 
-        self.book_dao.create_book(name, publish_date, price, author_id, genre_id)
-        print("Book added successfully")
+        try:
+            self.book_dao.create_book(name, publish_date, price, author_id, genre_id)
+            print("Book added successfully.")
+        except Exception as e:
+            print("Error while adding book:", e)
 
     def show_loans(self):
-        loans = self.loan_dao.get_all_loans()
-        for loan in loans:
-            print(loan)
+        try:
+            loans = self.loan_dao.get_all_loans()
+            for loan in loans:
+                print(loan)
+        except Exception as e:
+            print("Error while loading loans:", e)
+
 
     def add_loan(self):
-        reader_id = int(input("reader ID: "))
-        book_id = int(input("book ID: "))
+        reader_id = self.input_int("Reader ID: ")
+        book_id = self.input_int("Book ID: ")
 
         try:
             self.loan_dao.create_loan(reader_id, book_id)
-            print("Loan created successfully")
+            print("Loan created successfully.")
         except Exception as e:
             print("Error while creating loan:", e)
 
+
     def return_loan(self):
-        loan_id = int(input("Loan ID: "))
+        loan_id = self.input_int("Loan ID: ")
 
         try:
             self.loan_dao.return_loan(loan_id)
-            print("Book returned successfully")
+            print("Book returned successfully.")
         except Exception as e:
             print("Error while returning book:", e)
 
+
     def delete_loan(self):
-        loan_id = int(input("Loan ID: "))
+        loan_id = self.input_int("Loan ID: ")
 
         try:
             self.loan_dao.delete_loan(loan_id)
-            print("Loan deleted successfully")
+            print("Loan deleted successfully.")
         except Exception as e:
             print("Error while deleting loan:", e)
+
 
 
 
@@ -236,7 +250,6 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
-        input("Press enter to continue...")
 
     def add_genre(self):
         name = self.input_non_empty_string("Genre name: ")
@@ -247,7 +260,6 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
-        input("Press enter to continue...")
 
     def delete_genre(self):
         genre_id = self.input_int("Genre ID: ")
@@ -258,7 +270,6 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
-        input("Press enter to continue...")
 
 
     def exit_app(self):
