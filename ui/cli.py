@@ -45,7 +45,7 @@ class ConsoleUI:
     def book_loans_menu(self):
         menu_items = [
             MenuItem("1", "Show all loans", self.show_loans),
-            MenuItem("2", "Create new loan", self.create_loan),
+            MenuItem("2", "Create new loan", self.add_loan),
             MenuItem("3", "Return book", self.return_loan),
             MenuItem("4", "Delete loan", self.delete_loan),
             MenuItem("0", "Back", self.main_menu)
@@ -53,7 +53,7 @@ class ConsoleUI:
         self.run_menu("book loans", menu_items)
 
     def show_books(self):
-        books = self.book_dao.get_all()
+        books = self.book_dao.get_all_books()
         for book in books:
             print(book)
 
@@ -64,7 +64,7 @@ class ConsoleUI:
         author_id = int(input("author ID: "))
         genre_id = int(input("genre ID: "))
 
-        self.book_dao.insert_book(name, publish_date, price, author_id, genre_id)
+        self.book_dao.create_book(name, publish_date, price, author_id, genre_id)
         print("Book added successfully")
 
     def show_loans(self):
@@ -72,7 +72,7 @@ class ConsoleUI:
         for loan in loans:
             print(loan)
 
-    def create_loan(self):
+    def add_loan(self):
         reader_id = int(input("reader ID: "))
         book_id = int(input("book ID: "))
 
