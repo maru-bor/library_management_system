@@ -68,7 +68,7 @@ class ConsoleUI:
             MenuItem("1", "Book loans", self.book_loans_menu),
             MenuItem("2", "Books", self.books_menu),
             MenuItem("3", "Authors", self.authors_menu),
-            MenuItem("4", "Readers", self.readers_menu),
+            MenuItem("4", "Readers (Users)", self.readers_menu),
             MenuItem("5", "Genres", self.genres_menu),
             MenuItem("0", "End program", self.exit_app)
         ]
@@ -91,6 +91,33 @@ class ConsoleUI:
             MenuItem("0", "Back", self.main_menu)
         ]
         self.run_menu("book loans", menu_items)
+
+    def authors_menu(self):
+        menu_items = [
+            MenuItem("1", "Show all authors", self.show_authors),
+            MenuItem("2", "Add author", self.add_author),
+            MenuItem("3", "Delete author", self.delete_author),
+            MenuItem("0", "Back", self.main_menu)
+        ]
+        self.run_menu("Authors", menu_items)
+
+    def readers_menu(self):
+        menu_items = [
+            MenuItem("1", "Show all readers", self.show_readers),
+            MenuItem("2", "Add reader", self.add_reader),
+            MenuItem("3", "Delete reader", self.delete_reader),
+            MenuItem("0", "Back", self.main_menu)
+        ]
+        self.run_menu("Readers", menu_items)
+
+    def genres_menu(self):
+        menu_items = [
+            MenuItem("1", "Show all genres", self.show_genres),
+            MenuItem("2", "Add genre", self.add_genre),
+            MenuItem("3", "Delete genre", self.delete_genre),
+            MenuItem("0", "Back", self.main_menu)
+        ]
+        self.run_menu("Genres", menu_items)
 
     def show_books(self):
         books = self.book_dao.get_all_books()
@@ -140,14 +167,7 @@ class ConsoleUI:
         except Exception as e:
             print("Error while deleting loan:", e)
 
-    def authors_menu(self):
-        menu_items = [
-            MenuItem("1", "Show all authors", self.show_authors),
-            MenuItem("2", "Add author", self.add_author),
-            MenuItem("3", "Delete author", self.delete_author),
-            MenuItem("0", "Back", self.main_menu)
-        ]
-        self.run_menu("Authors", menu_items)
+
 
     def show_authors(self):
         try:
@@ -178,15 +198,6 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
-    def readers_menu(self):
-        menu_items = [
-            MenuItem("1", "Show all readers", self.show_readers),
-            MenuItem("2", "Add reader", self.add_reader),
-            MenuItem("3", "Delete reader", self.delete_reader),
-            MenuItem("0", "Back", self.main_menu)
-        ]
-        self.run_menu("Readers", menu_items)
-
     def show_readers(self):
         try:
             readers = self.reader_dao.get_all_readers()
@@ -195,7 +206,6 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
-        input("Press enter to continue...")
 
     def add_reader(self):
         first_name = self.input_non_empty_string("First name: ")
@@ -208,7 +218,6 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
-        input("Press enter to continue...")
 
     def delete_reader(self):
         reader_id = self.input_int("Reader ID: ")
@@ -219,7 +228,38 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
+    def show_genres(self):
+        try:
+            genres = self.genre_dao.get_all_genres()
+            for g in genres:
+                print(g)
+        except Exception as e:
+            print("Error:", e)
+
         input("Press enter to continue...")
+
+    def add_genre(self):
+        name = self.input_non_empty_string("Genre name: ")
+
+        try:
+            self.genre_dao.create_genre(name)
+            print("Genre created.")
+        except Exception as e:
+            print("Error:", e)
+
+        input("Press enter to continue...")
+
+    def delete_genre(self):
+        genre_id = self.input_int("Genre ID: ")
+
+        try:
+            self.genre_dao.delete_genre(genre_id)
+            print("Genre deleted.")
+        except Exception as e:
+            print("Error:", e)
+
+        input("Press enter to continue...")
+
 
     def exit_app(self):
         print("Ending program")
