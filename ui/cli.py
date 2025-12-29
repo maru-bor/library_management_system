@@ -3,6 +3,7 @@ from dao.BookLoanDAO import BookLoanDAO
 from dao.AuthorDAO import AuthorDAO
 from dao.ReaderDAO import ReaderDAO
 from dao.GenreDAO import GenreDAO
+from dao.ReportDAO import ReportDAO
 from ui.menu_item import MenuItem
 from datetime import datetime
 
@@ -13,6 +14,7 @@ class ConsoleUI:
         self.author_dao = AuthorDAO()
         self.reader_dao = ReaderDAO()
         self.genre_dao = GenreDAO()
+        self.report_dao = ReportDAO()
 
     def input_non_empty_string(self, prompt):
         while True:
@@ -70,6 +72,7 @@ class ConsoleUI:
             MenuItem("3", "Authors", self.authors_menu),
             MenuItem("4", "Readers (Users)", self.readers_menu),
             MenuItem("5", "Genres", self.genres_menu),
+            MenuItem("6", "Library Statistics (views + reports)", self.reports_menu),
             MenuItem("0", "End program", self.exit_app)
         ]
         self.run_menu("Library Management System", menu_items)
@@ -118,6 +121,16 @@ class ConsoleUI:
             MenuItem("0", "Back", self.main_menu)
         ]
         self.run_menu("Genres", menu_items)
+
+    def reports_menu(self):
+        menu_items = [
+            MenuItem("1", "Books overview (view)", self.show_books_view),
+            MenuItem("2", "Loans overview (view)", self.show_loans_view),
+            MenuItem("3", "Book and loan count by genre", self.show_genre_statistics),
+            MenuItem("4", "Most Borrowed Books (top 10)", self.show_most_borrowed_books),
+            MenuItem("0", "Back", self.main_menu)
+        ]
+        self.run_menu("Library Statistics (views + reports)", menu_items)
 
     def show_books(self):
         try:
@@ -267,6 +280,46 @@ class ConsoleUI:
         try:
             self.genre_dao.delete_genre(genre_id)
             print("Genre deleted.")
+        except Exception as e:
+            print("Error:", e)
+
+    def show_books_view(self):
+        try:
+            rows = self.report_dao.get_books_view()
+            print("\nBOOKS DETAIL VIEW")
+            for row in rows:
+                print(row)
+        except Exception as e:
+            print("Error:", e)
+
+    def show_loans_view(self):
+        try:
+            rows = self.report_dao.get_loans_view()
+            print("\nLOANS DETAIL VIEW")
+            for row in rows:
+                print(row)
+        except Exception as e:
+            print("Error:", e)
+
+    def show_genre_statistics(self):
+        try:
+            rows = self.report_dao.get_genre_statistics()
+            print("\nGENRE STATISTICS")
+            print("GENRE | BOOK COUNT | LOAN COUNT")
+
+            for row in rows:
+                print(row)
+        except Exception as e:
+            print("Error:", e)
+
+    def show_most_borrowed_books(self):
+        try:
+            rows = self.report_dao.get_most_borrowed_books()
+            print("\nTOP 10 MOST BORROWED BOOKS")
+            print("ID | BOOK | AUTHOR | LOANS")
+
+            for row in rows:
+                print(row)
         except Exception as e:
             print("Error:", e)
 

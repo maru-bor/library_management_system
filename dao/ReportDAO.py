@@ -18,7 +18,7 @@ class ReportDAO:
         )
         return cursor.fetchall()
 
-    def get_book_and_loan_count_by_genre(self):
+    def get_genre_statistics(self):
         cursor = self.connection.cursor()
         cursor.execute(
             """
@@ -34,7 +34,7 @@ class ReportDAO:
         )
         return cursor.fetchall()
 
-    def get_most_loaned_books(self):
+    def get_most_borrowed_books(self):
         cursor = self.connection.cursor()
         cursor.execute(
             """
