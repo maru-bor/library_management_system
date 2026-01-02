@@ -4,6 +4,7 @@ from dao.AuthorDAO import AuthorDAO
 from dao.ReaderDAO import ReaderDAO
 from dao.GenreDAO import GenreDAO
 from dao.ReportDAO import ReportDAO
+from CSVImport import CSVImport
 from ui.menu_item import MenuItem
 from datetime import datetime
 
@@ -15,6 +16,7 @@ class ConsoleUI:
         self.reader_dao = ReaderDAO()
         self.genre_dao = GenreDAO()
         self.report_dao = ReportDAO()
+        self.csv_import = CSVImport(book_dao=self.book_dao,author_dao=self.author_dao)
 
     def input_non_empty_string(self, prompt):
         while True:
@@ -72,7 +74,8 @@ class ConsoleUI:
             MenuItem("3", "Authors", self.authors_menu),
             MenuItem("4", "Readers (Users)", self.readers_menu),
             MenuItem("5", "Genres", self.genres_menu),
-            MenuItem("6", "Library Statistics (views + reports)", self.reports_menu),
+            MenuItem("6", "Library Statistics (Views + Reports)", self.reports_menu),
+            MenuItem("7", "Import Data From CSV File", self.import_data_menu),
             MenuItem("0", "End program", self.exit_app)
         ]
         self.run_menu("Library Management System", menu_items)
@@ -131,6 +134,14 @@ class ConsoleUI:
             MenuItem("0", "Back", self.main_menu)
         ]
         self.run_menu("Library Statistics (views + reports)", menu_items)
+
+    def import_data_menu(self):
+        menu_items = [
+            MenuItem("1", "Import books from CSV file", self.import_books),
+            MenuItem("2", "Import authors from CSV file", self.import_authors),
+            MenuItem("0", "Back", self.main_menu)
+        ]
+        self.run_menu("Import Data", menu_items)
 
     def show_books(self):
         try:
@@ -255,6 +266,7 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
+    # Genres functions
     def show_genres(self):
         try:
             genres = self.genre_dao.get_all_genres()
@@ -283,6 +295,8 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
+
+    # Library Statistics functions
     def show_books_view(self):
         try:
             rows = self.report_dao.get_books_view()
@@ -322,6 +336,21 @@ class ConsoleUI:
                 print(row)
         except Exception as e:
             print("Error:", e)
+
+    # CSV Import functions
+    def import_books(self):
+        filename = input("Enter CSV filename: ")
+        try:
+            self.csv_import.import_books_from_csv(filename)
+        except Exception as e:
+            print("Import failed:", e)
+
+    def import_authors(self):
+        filename = input("Enter CSV filename: ")
+        try:
+            self.csv_import.import_authors_from_csv(filename)
+        except Exception as e:
+            print("Import failed:", e)
 
 
 
