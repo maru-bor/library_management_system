@@ -295,7 +295,7 @@ class ConsoleUI:
     def show_loans_view(self):
         try:
             rows = self.report_dao.get_loans_view()
-            print("\nLOANS DETAIL VIEW")
+            print("\nLOAN ID | READER NAME | BOOK NAME | LOAN DATE | DUE DATE | RETURN DATE | LOAN STATE ")
             for row in rows:
                 print(row)
         except Exception as e:
