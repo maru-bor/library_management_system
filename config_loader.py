@@ -29,16 +29,14 @@ class ConfigLoader:
 
     @staticmethod
     def _validate_config(config):
-        if "db" not in config:
-            raise ConfigError("Missing 'db' section in config file")
-
-        db = config["db"]
+        if not isinstance(config, dict):
+            raise ConfigError("Config must be a JSON object")
 
         for key, expected_type in ConfigLoader.REQUIRED_DB_KEYS.items():
-            if key not in db:
-                raise ConfigError(f"Missing database config key: '{key}'")
+            if key not in config:
+                raise ConfigError(f"Missing config key: '{key}'")
 
-            value = db[key]
+            value = config[key]
 
             if not isinstance(value, expected_type):
                 raise ConfigError(f"Invalid type for '{key}': expected type is {expected_type.__name__}")
