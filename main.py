@@ -2,8 +2,12 @@ from ui.cli import ConsoleUI
 
 
 def main():
-    app = ConsoleUI()
-    app.main_menu()
+    try:
+
+        app = ConsoleUI()
+        app.main_menu()
+    except RuntimeError as e:
+        print(e)
 
 
 if __name__ == "__main__":
