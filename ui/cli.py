@@ -206,7 +206,7 @@ class ConsoleUI:
 
 
 
-
+    # Authors - functions
     def show_authors(self):
         try:
             authors = self.author_dao.get_all_authors()
@@ -266,7 +266,7 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
-    # Genres functions
+    # Genres - functions
     def show_genres(self):
         try:
             genres = self.genre_dao.get_all_genres()
@@ -296,7 +296,7 @@ class ConsoleUI:
             print("Error:", e)
 
 
-    # Library Statistics functions
+    # Library Statistics - functions
     def show_books_view(self):
         try:
             rows = self.report_dao.get_books_view()
@@ -337,7 +337,7 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
-    # CSV Import functions
+    # CSV Import - functions
     def import_books(self):
         filename = input("Enter CSV filename: ")
         try:

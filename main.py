@@ -3,7 +3,6 @@ from ui.cli import ConsoleUI
 
 def main():
     try:
-
         app = ConsoleUI()
         app.main_menu()
     except RuntimeError as e:

@@ -29,6 +29,7 @@ class ConfigLoader:
 
     @staticmethod
     def _validate_config(config):
+
         if not isinstance(config, dict):
             raise ConfigError("Config must be a JSON object")
 
