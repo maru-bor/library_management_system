@@ -31,7 +31,7 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
 
       V záložce "User mapping" pak nastavte mapování mezi databází ```db_library``` a oprávněním ```db_owner```.
   4. Spojení otestujte tak, že kliknete v záložce "Object explorer" znovu na tlačítko "Connect" a vytvoříte druhé připojení pomocí tohoto uživatele.
-  5. Stáhněte si SQL DDL [skript](script.sql) a spustě ho v databázi ```db_library```
+  5. Stáhněte si SQL DDL [skript](script.sql) a spusťtě ho v databázi ```db_library```
   6. Zkontrolujte, zda-li se úspěšně vytvořili všechny tabulky, jejich vazby a také pohledy.
 ## 2. Nastavení konfiguračního souboru
   1. Naklonujte si repozitář projektu
@@ -58,9 +58,9 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
   }
   ```
 ## 3. Vytvoření virtuálního prostředí a instalace Python balíčků
-  1. Přejděte do kořenového adresáře projektu
+  1. Přejděte zpět do kořenového adresáře projektu (pokud jste stále v adresáři ```db```)
   ```
-  cd library_management_system
+  cd ..
   ```
   2. Vytvořte virtuální prostředí 
   ```
@@ -79,4 +79,4 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
   ```
   python main.py
   ```
-  Mělo by se zobrazit hlavní konzolové menu aplikace
+  Mělo by se zobrazit hlavní konzolové menu aplikace.
