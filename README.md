@@ -39,11 +39,11 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
   git clone https://github.com/maru-bor/library_management_system.git
   ```
   2. Přejděte do adresáře ```db```
-  **Windows CMD a PowerShell**:
+  - **Windows CMD a PowerShell**:
   ```
   cd library_management_system\db
   ```
-   **Git Bash**:
+  - **Git Bash**:
   ```
   cd library_management_system/db
   ```   
