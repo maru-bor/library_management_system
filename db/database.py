@@ -1,5 +1,5 @@
 import pyodbc
-from config_loader import ConfigLoader, ConfigError
+from db.config_loader import ConfigLoader, ConfigError
 
 class Database:
     _instance = None
