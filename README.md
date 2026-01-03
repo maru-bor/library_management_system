@@ -67,7 +67,7 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
   python -m venv venv
   ```
   Poté prostředí aktivujte:
-  **Windows**
+  - **Windows**
    ```
    venv\Scripts\activate
    ```
