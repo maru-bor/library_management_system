@@ -1,4 +1,4 @@
-from database import *
+from db.database import *
 
 class BookDAO:
     def __init__(self):

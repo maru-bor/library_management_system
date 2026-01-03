@@ -1,4 +1,4 @@
-from database import Database
+from db.database import Database
 
 class GenreDAO:
     def __init__(self):
@@ -33,4 +33,8 @@ class GenreDAO:
             "delete from genres where id = ?",
             genre_id
         )
+
+        if cursor.rowcount == 0:
+            raise ValueError("Genre with given ID does not exist")
+
         self.connection.commit()

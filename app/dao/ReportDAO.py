@@ -1,4 +1,4 @@
-from database import Database
+from db.database import Database
 
 class ReportDAO:
     def __init__(self):

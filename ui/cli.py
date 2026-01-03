@@ -1,10 +1,10 @@
-from dao.BookDAO import BookDAO
-from dao.BookLoanDAO import BookLoanDAO
-from dao.AuthorDAO import AuthorDAO
-from dao.ReaderDAO import ReaderDAO
-from dao.GenreDAO import GenreDAO
-from dao.ReportDAO import ReportDAO
-from CSVImport import CSVImport
+from app.dao.BookDAO import BookDAO
+from app.dao.BookLoanDAO import BookLoanDAO
+from app.dao.AuthorDAO import AuthorDAO
+from app.dao.ReaderDAO import ReaderDAO
+from app.dao.GenreDAO import GenreDAO
+from app.dao.ReportDAO import ReportDAO
+from app.CSVImport import CSVImport
 from ui.menu_item import MenuItem
 from datetime import datetime
 
@@ -54,7 +54,7 @@ class ConsoleUI:
             for item in menu_items:
                 print(f"{item.key} - {item.description}")
 
-            choice = input("choice: ")
+            choice = input("Choice: ")
 
             for item in menu_items:
                 if item.key == choice:
@@ -65,16 +65,16 @@ class ConsoleUI:
                     break
 
             else:
-                print("invalid choice")
+                print("Invalid choice")
 
     def main_menu(self):
         menu_items = [
-            MenuItem("1", "Book loans", self.book_loans_menu),
-            MenuItem("2", "Books", self.books_menu),
-            MenuItem("3", "Authors", self.authors_menu),
-            MenuItem("4", "Readers (Users)", self.readers_menu),
-            MenuItem("5", "Genres", self.genres_menu),
-            MenuItem("6", "Library Statistics (Views + Reports)", self.reports_menu),
+            MenuItem("1", "Manage book loans", self.book_loans_menu),
+            MenuItem("2", "Manage books", self.books_menu),
+            MenuItem("3", "Manage authors", self.authors_menu),
+            MenuItem("4", "Manage readers (users)", self.readers_menu),
+            MenuItem("5", "Manage genres", self.genres_menu),
+            MenuItem("6", "View library statistics (views + reports)", self.reports_menu),
             MenuItem("7", "Import Data From CSV File", self.import_data_menu),
             MenuItem("0", "End program", self.exit_app)
         ]
@@ -86,7 +86,7 @@ class ConsoleUI:
             MenuItem("2", "Add new book", self.add_book),
             MenuItem("0", "Back", self.main_menu)
         ]
-        self.run_menu("books", menu_items)
+        self.run_menu("Books", menu_items)
 
     def book_loans_menu(self):
         menu_items = [
@@ -96,7 +96,7 @@ class ConsoleUI:
             MenuItem("4", "Delete loan", self.delete_loan),
             MenuItem("0", "Back", self.main_menu)
         ]
-        self.run_menu("book loans", menu_items)
+        self.run_menu("Book Loans", menu_items)
 
     def authors_menu(self):
         menu_items = [
