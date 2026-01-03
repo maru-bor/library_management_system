@@ -36,9 +36,12 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
 ## 2. Nastavení konfiguračního souboru
   1. Naklonujte si repozitář projektu:
   ```
-  git clone 
+  git clone https://github.com/maru-bor/library_management_system.git
   ```
-  2. 
+  2. Přejděte do kořenového adresáře projektu:
+  ```
+  cd library_management_system
+  ```
      
   
 
