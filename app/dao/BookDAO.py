@@ -40,4 +40,6 @@ class BookDAO:
             "delete from books where id = ?",
             book_id
         )
+        if cursor.rowcount == 0:
+            raise ValueError("Book with given ID does not exist")
         self.connection.commit()

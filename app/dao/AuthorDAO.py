@@ -31,4 +31,6 @@ class AuthorDAO:
             "delete from authors where id = ?",
             author_id
         )
+        if cursor.rowcount == 0:
+            raise ValueError("Author with given ID does not exist")
         self.connection.commit()

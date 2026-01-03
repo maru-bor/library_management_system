@@ -84,8 +84,8 @@ class BookLoanDAO:
 
             cursor.execute("select book_id, loan_state from book_loans where id = ?", loan_id)
             row = cursor.fetchone()
-            if not row:
-                raise Exception("Book loan not found")
+            if cursor.rowcount == 0:
+                raise ValueError("Loan with given ID does not exist")
             book_id = row.book_id
             loan_state = row.loan_state
 

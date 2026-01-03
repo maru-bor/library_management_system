@@ -33,4 +33,6 @@ class ReaderDAO:
             "delete from readers where id = ?",
             reader_id
         )
+        if cursor.rowcount == 0:
+            raise ValueError("Reader with given ID does not exist")
         self.connection.commit()

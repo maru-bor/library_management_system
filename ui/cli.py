@@ -84,6 +84,7 @@ class ConsoleUI:
         menu_items = [
             MenuItem("1", "Show all books", self.show_books),
             MenuItem("2", "Add new book", self.add_book),
+            MenuItem("3", "Delete book", self.delete_book),
             MenuItem("0", "Back", self.main_menu)
         ]
         self.run_menu("Books", menu_items)
@@ -143,6 +144,7 @@ class ConsoleUI:
         ]
         self.run_menu("Import Data", menu_items)
 
+    # Books - functions
     def show_books(self):
         try:
             books = self.book_dao.get_all_books()
@@ -161,10 +163,20 @@ class ConsoleUI:
 
         try:
             self.book_dao.create_book(name, publish_date, price, author_id, genre_id)
-            print("Book added successfully.")
+            print("Book successfully added.")
         except Exception as e:
             print("Error while adding book:", e)
 
+    def delete_book(self):
+        book_id = self.input_int("Book ID: ")
+
+        try:
+            self.book_dao.delete_book(book_id)
+            print("Book successfully deleted.")
+        except Exception as e:
+            print("Error:", e)
+
+    # Book loans - functions
     def show_loans(self):
         try:
             loans = self.loan_dao.get_all_loans()
@@ -236,6 +248,7 @@ class ConsoleUI:
         except Exception as e:
             print("Error:", e)
 
+    # Readers - functions
     def show_readers(self):
         try:
             readers = self.reader_dao.get_all_readers()
@@ -319,7 +332,7 @@ class ConsoleUI:
         try:
             rows = self.report_dao.get_genre_statistics()
             print("\nGENRE STATISTICS")
-            print("GENRE | BOOK COUNT | LOAN COUNT")
+            print("GENRE NAME | BOOK COUNT | LOAN COUNT")
 
             for row in rows:
                 print(row)
@@ -330,7 +343,7 @@ class ConsoleUI:
         try:
             rows = self.report_dao.get_most_borrowed_books()
             print("\nTOP 10 MOST BORROWED BOOKS")
-            print("ID | BOOK | AUTHOR | LOANS")
+            print("BOOK ID | BOOK NAME | AUTHOR NAME | LOAN COUNT")
 
             for row in rows:
                 print(row)
