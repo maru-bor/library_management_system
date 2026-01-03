@@ -14,7 +14,7 @@ class ConfigLoader:
     }
 
     @staticmethod
-    def load_config(path="db_config.json"):
+    def load_config(path="db/db_config.json"):
         if not os.path.exists(path):
             raise ConfigError(f"Config file '{path}' not found")
 
