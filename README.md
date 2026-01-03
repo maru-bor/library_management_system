@@ -18,7 +18,10 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
       - AUTHENTICATION: ```SQL Server authentication```
       - LOGIN: ```sa```
       - PASSWORD: ```student```
-  2. Vytvořte novou databázi s názvem ```db_library```
+  2. Vytvořte novou databázi s názvem ```db_library```:
+     ```
+     create database db_library
+     ```
   3. Vytvořte aplikační uživatelský účet, který vytvoříte ve složce "Security" a podsložce "Logins" klinutím na pravé tlačítko a zvolením "New login". Nového uživatele vytvořte s těmito parametry:
       - LOGIN NAME: lib_admin
       - AUTHENTICATION: SQL Server authentication
@@ -26,5 +29,7 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
       - USER MUST CHANGE PASSWORD: no
       - DEFAULT DATAVASE: db_library
 
-      A v záložce vpravo označené jako "User mapping" pak nastavte mapování mezi databází ```db_library``` a oprávněním ```db_owner```. Vše uložíte tlačítkem "OK".
+      V záložce označené jako "User mapping" pak nastavte mapování mezi databází ```db_library``` a oprávněním ```db_owner```.
+  4. Spojení otestujte tak, že kliknete v záložce "Object explorer" znovu na tlačítko "Connect" a vytvoříte druhé připojení pomocí tohoto uživatele.
+  5.    
 
