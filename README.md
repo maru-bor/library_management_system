@@ -31,5 +31,14 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
 
       V záložce označené jako "User mapping" pak nastavte mapování mezi databází ```db_library``` a oprávněním ```db_owner```.
   4. Spojení otestujte tak, že kliknete v záložce "Object explorer" znovu na tlačítko "Connect" a vytvoříte druhé připojení pomocí tohoto uživatele.
-  5.    
+  5. Stáhněte si SQL DDL [skript](script.sql) a spustě ho v databázi ```db_library```
+  6. Zkontrolujte, zda-li se úspěšně vytvořili všechny tabulky, jejich vazby a také pohledy.
+## 2. Nastavení konfiguračního souboru
+  1. Naklonujte si repozitář projektu:
+  ```
+  git clone 
+  ```
+  2. 
+     
+  
 
