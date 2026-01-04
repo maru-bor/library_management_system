@@ -8,10 +8,22 @@ class BookLoanDAO:
     def get_all_loans(self):
         cursor = self.connection.cursor()
         cursor.execute("""
-               select bl.id, r.first_name, r.surname, b.book_name, bl.loan_date, bl.due_date, bl.return_date, bl.loan_state
-               from book_loans bl
-               join readers r on bl.reader_id = r.id
-               join books b on bl.book_id = b.id
+                select
+            bl.id,
+            r.first_name,
+            r.surname,
+            b.book_name,
+            bl.loan_date,
+            bl.due_date,
+            bl.return_date,
+            case
+                when bl.return_date is not null then 'returned'
+                when bl.due_date < cast(getdate() as date) then 'overdue'
+                else 'active'
+            end as loan_state
+        from book_loans bl
+        join readers r on bl.reader_id = r.id
+        join books b on bl.book_id = b.id
            """)
         return cursor.fetchall()
 
