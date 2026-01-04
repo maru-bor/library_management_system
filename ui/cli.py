@@ -148,6 +148,7 @@ class ConsoleUI:
     def show_books(self):
         try:
             books = self.book_dao.get_all_books()
+            print("\nBOOK ID | BOOK NAME | PUBLISH DATE | PRICE | IS AVAILABLE TO LOAN | AUTHOR ID | GENRE ID")
             for book in books:
                 print(book)
         except Exception as e:
@@ -180,6 +181,7 @@ class ConsoleUI:
     def show_loans(self):
         try:
             loans = self.loan_dao.get_all_loans()
+            print("\nLOAN ID | READER FIRST NAME | READER SURNAME | BOOK NAME | LOAN DATE | DUE DATE | RETURN DATE | LOAN STATE")
             for loan in loans:
                 print(loan)
         except Exception as e:
@@ -222,6 +224,7 @@ class ConsoleUI:
     def show_authors(self):
         try:
             authors = self.author_dao.get_all_authors()
+            print("\nAUTHOR ID | FIRST NAME | SURNAME")
             for a in authors:
                 print(a)
         except Exception as e:
@@ -244,7 +247,7 @@ class ConsoleUI:
 
         try:
             self.author_dao.delete_author(author_id)
-            print("Author successfully deleted.")
+            print("Author deleted.")
         except Exception as e:
             print("Error:", e)
 
@@ -252,6 +255,7 @@ class ConsoleUI:
     def show_readers(self):
         try:
             readers = self.reader_dao.get_all_readers()
+            print("\nREADER ID | FIRST NAME | SURNAME | EMAIL")
             for r in readers:
                 print(r)
         except Exception as e:
@@ -283,6 +287,7 @@ class ConsoleUI:
     def show_genres(self):
         try:
             genres = self.genre_dao.get_all_genres()
+            print("\nGENRE ID | GENRE NAME")
             for g in genres:
                 print(g)
         except Exception as e:
@@ -313,7 +318,7 @@ class ConsoleUI:
     def show_books_view(self):
         try:
             rows = self.report_dao.get_books_view()
-            print("\nBOOKS DETAIL VIEW")
+            print("\nBOOK ID | BOOK NAME | AUTHOR NAME | GENRE NAME | PRICE | IS AVAILABLE TO LOAN")
             for row in rows:
                 print(row)
         except Exception as e:
@@ -344,7 +349,6 @@ class ConsoleUI:
             rows = self.report_dao.get_most_borrowed_books()
             print("\nTOP 10 MOST BORROWED BOOKS")
             print("BOOK ID | BOOK NAME | AUTHOR NAME | LOAN COUNT")
-
             for row in rows:
                 print(row)
         except Exception as e:
@@ -352,6 +356,7 @@ class ConsoleUI:
 
     # CSV Import - functions
     def import_books(self):
+        print("!! The CSV file must first be in the project root directory BEFORE importing it !!")
         filename = input("Enter CSV filename: ")
         try:
             self.csv_import.import_books_from_csv(filename)
@@ -359,6 +364,7 @@ class ConsoleUI:
             print("Import failed:", e)
 
     def import_authors(self):
+        print("!! The CSV file must first be in the project root directory BEFORE importing it !!")
         filename = input("Enter CSV filename: ")
         try:
             self.csv_import.import_authors_from_csv(filename)
