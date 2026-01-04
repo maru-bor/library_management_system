@@ -204,9 +204,27 @@ class ConsoleUI:
 
         try:
             self.loan_dao.return_loan(loan_id)
-            print("Book returned successfully.")
+            print("Book returned.")
         except Exception as e:
             print("Error while returning book:", e)
+
+    def update_loan(self):
+        try:
+            loan_id = self.input_int("Loan ID: ")
+            new_due_date_str = self.input_date("New due date (YYYY-MM-DD): ")
+            new_state = self.input_non_empty_string("Name of book: ").lower()
+
+            if new_state not in ("active", "returned"):
+                print("Invalid loan state")
+                return
+
+            self.loan_dao.update_loan(loan_id, new_due_date_str, new_state)
+            print("Loan updated.")
+
+        except ValueError as e:
+            print("Input error:", e)
+        except Exception as e:
+            print("Error while updating loan:", e)
 
 
     def delete_loan(self):
