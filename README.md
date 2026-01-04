@@ -1,6 +1,5 @@
-# Systém pro správu knihovny (konzolová aplikace, D1)
-Konzolová aplikace pro správu knihovny je implementovaná v jazyce **Python** s využitím relační databáze **Microsoft SQL Server**.
-Aplikace je navržena v three-tier architektuře a využívá návrhové vzory **DAO** a **Singleton**.
+# Systém pro správu knihovny (konzolová aplikace)
+Konzolová aplikace pro správu knihovny je implementovaná v jazyce **Python** s využitím relační databáze **Microsoft SQL Server**. Aplikace je zpracována jako školní projekt. Aplikace je navržena v three-tier architektuře a využívá návrhové vzory **DAO** a **Singleton**. Obsahuje skupinu zadání **D1**.
 
 # Software požadavky
 Aplikace využívá následující software: 
@@ -9,15 +8,8 @@ Aplikace využívá následující software:
   3. ODBC Driver 17 for SQL Server
 
 # Instalace a spuštění aplikace
-Tento návod na instalaci a spuštění aplikace je především určen pro školní počítače na SPŠE Ječná. Tudíž návod tedy také počítá s tím, že výše uvedený software je už na zařízení nainstalovaný (kromě specifických Python knihoven a balíčků) a že uživatel používá Windows 10 OS. 
-
 ## 1. Vytvoření a nastavení databáze
-  1. Připojíte se pomocí programu Microsoft SQL Server Management Studio pomocí následujících přístupových údajů, kde PCXXX nahradíte skutečným jménem databázového serveru:
-      - SERVER TYPE: ```Database engine```
-      - SERVER NAME: ```PCXXX```
-      - AUTHENTICATION: ```SQL Server authentication```
-      - LOGIN: ```sa```
-      - PASSWORD: ```student```
+  1. Připojte se pomocí programu Microsoft SQL Server Management Studio s vašimi přístupovými údaji
   2. Vytvořte novou databázi s názvem ```db_library```:
      ```
      create database db_library
@@ -31,7 +23,7 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
 
       V záložce "User mapping" pak nastavte mapování mezi databází ```db_library``` a oprávněním ```db_owner```.
   4. Spojení otestujte tak, že kliknete v záložce "Object explorer" znovu na tlačítko "Connect" a vytvoříte druhé připojení pomocí tohoto uživatele.
-  5. Stáhněte si SQL DDL [skript](script.sql) a spusťtě ho v databázi ```db_library```
+  5. Stáhněte si SQL DDL a DML [skript](script.sql) a spusťtě ho v databázi ```db_library```
   6. Zkontrolujte, zda-li se úspěšně vytvořili všechny tabulky, jejich vazby a také pohledy.
 ## 2. Nastavení konfiguračního souboru
   1. Naklonujte si repozitář projektu
@@ -71,7 +63,7 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
    ```
    venv\Scripts\activate
    ```
-  3. Po aktivaci venv prostředí, instalujte balíček ```pyodbc```
+  3. Po aktivaci venv prostředí instalujte balíček ```pyodbc```
   ```
   pip install pyodbc
   ```
