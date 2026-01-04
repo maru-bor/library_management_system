@@ -92,7 +92,7 @@ class ConsoleUI:
     def book_loans_menu(self):
         menu_items = [
             MenuItem("1", "Show all loans", self.show_loans),
-            MenuItem("2", "Create new loan", self.add_loan),
+            MenuItem("2", "Add new loan", self.add_loan),
             MenuItem("3", "Return book", self.return_loan),
             MenuItem("4", "Delete loan", self.delete_loan),
             MenuItem("0", "Back", self.main_menu)
@@ -148,7 +148,7 @@ class ConsoleUI:
     def show_books(self):
         try:
             books = self.book_dao.get_all_books()
-            print("\nBOOK ID | BOOK NAME | PUBLISH DATE | PRICE | IS AVAILABLE TO LOAN | AUTHOR ID | GENRE ID")
+            print("\nBOOK ID | BOOK NAME | PUBLISH DATE | PRICE | IS AVAILABLE | AUTHOR ID | GENRE ID")
             for book in books:
                 print(book)
         except Exception as e:
@@ -164,7 +164,7 @@ class ConsoleUI:
 
         try:
             self.book_dao.create_book(name, publish_date, price, author_id, genre_id)
-            print("Book successfully added.")
+            print("Book added.")
         except Exception as e:
             print("Error while adding book:", e)
 
@@ -173,7 +173,7 @@ class ConsoleUI:
 
         try:
             self.book_dao.delete_book(book_id)
-            print("Book successfully deleted.")
+            print("Book deleted.")
         except Exception as e:
             print("Error:", e)
 
@@ -194,7 +194,7 @@ class ConsoleUI:
 
         try:
             self.loan_dao.create_loan(reader_id, book_id)
-            print("Loan created successfully.")
+            print("Loan created.")
         except Exception as e:
             print("Error while creating loan:", e)
 
@@ -232,7 +232,7 @@ class ConsoleUI:
 
         try:
             self.loan_dao.delete_loan(loan_id)
-            print("Loan deleted successfully.")
+            print("Loan deleted.")
         except Exception as e:
             print("Error while deleting loan:", e)
 
@@ -255,7 +255,7 @@ class ConsoleUI:
 
         try:
             self.author_dao.create_author(first_name, surname)
-            print("Author successfully created.")
+            print("Author created.")
         except Exception as e:
             print("Error:", e)
 
@@ -336,7 +336,7 @@ class ConsoleUI:
     def show_books_view(self):
         try:
             rows = self.report_dao.get_books_view()
-            print("\nBOOK ID | BOOK NAME | AUTHOR NAME | GENRE NAME | PRICE | IS AVAILABLE TO LOAN")
+            print("\nBOOK ID | BOOK NAME | AUTHOR NAME | GENRE NAME | PRICE | IS AVAILABLE")
             for row in rows:
                 print(row)
         except Exception as e:
