@@ -75,7 +75,7 @@ class ConsoleUI:
             MenuItem("4", "Manage readers (users)", self.readers_menu),
             MenuItem("5", "Manage genres", self.genres_menu),
             MenuItem("6", "View library statistics (views + reports)", self.reports_menu),
-            MenuItem("7", "Import Data From CSV File", self.import_data_menu),
+            MenuItem("7", "Import data from CSV file", self.import_data_menu),
             MenuItem("0", "End program", self.exit_app)
         ]
         self.run_menu("Library Management System", menu_items)
