@@ -1,4 +1,4 @@
-# Systém pro správu knihovny (konzolová aplikace)
+# Systém pro správu knihovny (konzolová aplikace, D1)
 Konzolová aplikace pro správu knihovny je implementovaná v jazyce **Python** s využitím relační databáze **Microsoft SQL Server**.
 Aplikace je navržena v three-tier architektuře a využívá návrhové vzory **DAO** a **Singleton**.
 
@@ -80,3 +80,22 @@ Tento návod na instalaci a spuštění aplikace je především určen pro ško
   python main.py
   ```
   Mělo by se zobrazit hlavní konzolové menu aplikace.
+# ! Poznámka k importování CSV souborů !
+Všechny CSV soubory co chcete importovat musíte nejdříve umístit do **kořenového adresáře projektu**. Import jinak neprojde. Dále je důležité dodržovat určitou strukturu headerů v souboru před importováním. Níže je specifikovaná struktura headerů CSV souborů pro import do tabulek ```books``` a  ```authors```, kde XXX znázorňuje vaše vlastní data:
+  - **books**
+    - ```publish_date``` musí být ve formátu YYYY-MM-DD
+    - ```author_id``` musí existovat v tabulce ```authors```
+    - ```genre_id``` musí existovat v tabulce ```genres```
+    - ```price``` musí být >= 0
+  ```
+  book_name,publish_date,price,author_id,genre_id
+  XXX,XXX,XXX,XXX,XXX
+  ```
+  - **authors**
+    - ```first_name``` nesmí být prázdná hodnota
+    - ```surname``` nesmí být prázdná hodnota
+  ```
+  first_name,surname
+  XXX,XXX
+  ```
+  
