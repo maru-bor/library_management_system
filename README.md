@@ -92,6 +92,8 @@ Všechny CSV soubory co chcete importovat musíte nejdříve umístit do **koře
   XXX,XXX,XXX,XXX,XXX
   ```
   - **authors**
+    - ```first_name``` nesmí být prázdná hodnota
+    - ```surname``` nesmí být prázdná hodnota
   ```
   first_name,surname
   XXX,XXX
