@@ -94,7 +94,8 @@ class ConsoleUI:
             MenuItem("1", "Show all loans", self.show_loans),
             MenuItem("2", "Add new loan", self.add_loan),
             MenuItem("3", "Return book", self.return_loan),
-            MenuItem("4", "Delete loan", self.delete_loan),
+            MenuItem("4", "Update loan", self.update_loan),
+            MenuItem("5", "Delete loan", self.delete_loan),
             MenuItem("0", "Back", self.main_menu)
         ]
         self.run_menu("Book Loans", menu_items)
@@ -212,7 +213,7 @@ class ConsoleUI:
         try:
             loan_id = self.input_int("Loan ID: ")
             new_due_date_str = self.input_date("New due date (YYYY-MM-DD): ")
-            new_state = self.input_non_empty_string("Name of book: ").lower()
+            new_state = self.input_non_empty_string("New loan state (active/returned): ").lower()
 
             if new_state not in ("active", "returned"):
                 print("Invalid loan state")

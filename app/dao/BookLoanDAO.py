@@ -100,7 +100,7 @@ class BookLoanDAO:
             )
             row = cursor.fetchone()
 
-            if cursor.rowcount == 0:
+            if row is None:
                 raise ValueError("Loan with given ID does not exist")
 
             book_id = row.book_id
