@@ -9,7 +9,7 @@ Aplikace využívá následující software:
 
 # Instalace a spuštění aplikace
 ## 1. Vytvoření a nastavení databáze
-  1. Připojte se pomocí programu Microsoft SQL Server Management Studio s vašimi přístupovými údaji
+  1. Připojte se do databázového serveru Microsoft SQL Server pomocí programu Microsoft SQL Server Management Studio s vašimi přístupovými údaji
   2. Vytvořte novou databázi s názvem ```db_library```:
      ```
      create database db_library
