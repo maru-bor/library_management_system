@@ -157,13 +157,16 @@ class ConsoleUI:
 
 
     def add_book(self):
-        name = self.input_non_empty_string("Name of book: ")
-        publish_date = self.input_date("Publish date (YYYY-MM-DD): ")
-        price = self.input_float("Price: ")
-        author_id = self.input_int("Author ID: ")
-        genre_id = self.input_int("Genre ID: ")
-
         try:
+            name = self.input_non_empty_string("Name of book: ")
+            publish_date = self.input_date("Publish date (YYYY-MM-DD): ")
+            price = self.input_float("Price: ")
+            author_id = self.input_int("Author ID: ")
+            genre_id = self.input_int("Genre ID: ")
+
+            if price <= 0:
+                raise ValueError("Price must be greater than 0")
+
             self.book_dao.create_book(name, publish_date, price, author_id, genre_id)
             print("Book added.")
         except Exception as e:
