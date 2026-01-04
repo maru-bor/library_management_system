@@ -93,7 +93,7 @@ class ConsoleUI:
         menu_items = [
             MenuItem("1", "Show all loans", self.show_loans),
             MenuItem("2", "Add new loan", self.add_loan),
-            MenuItem("3", "Return book", self.return_loan),
+            MenuItem("3", "Return loan", self.return_loan),
             MenuItem("4", "Update loan", self.update_loan),
             MenuItem("5", "Delete loan", self.delete_loan),
             MenuItem("0", "Back", self.main_menu)

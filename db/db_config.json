@@ -1,7 +1,7 @@
 {
-    "server": "MARIE",
-    "database": "db_library",
-    "username": "lib_admin",
-    "password": "admin",
-    "driver": "ODBC Driver 17 for SQL Server"
+    "server": "",
+    "database": "",
+    "username": "",
+    "password": "",
+    "driver": ""
 }
