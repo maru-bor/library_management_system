@@ -41,9 +41,9 @@ Aplikace využívá následující software:
   }
   ```
 ## 3. Vytvoření virtuálního prostředí a instalace Python balíčků
-  1. Přejděte zpět do kořenového adresáře projektu (pokud jste stále v adresáři ```db```)
+  1. Přejděte do kořenového adresáře projektu
   ```
-  cd ..
+  cd library_management_system
   ```
   2. Vytvořte virtuální prostředí 
   ```
