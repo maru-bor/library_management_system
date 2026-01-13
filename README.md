@@ -30,16 +30,7 @@ Aplikace využívá následující software:
   ```
   git clone https://github.com/maru-bor/library_management_system.git
   ```
-  2. Přejděte do adresáře ```db```
-  - **Windows CMD a PowerShell**:
-  ```
-  cd library_management_system\db
-  ```
-  - **Git Bash**:
-  ```
-  cd library_management_system/db
-  ```   
-  3. Upravte konfigurační soubor ```db_config.json``` tak, aby měl následující parametry, PCXXX nahradíte skutečným jménem databázového serveru:
+  2. Upravte konfigurační soubor ```db_config.json``` v adresáři ```db``` tak, aby měl následující parametry, PCXXX nahradíte skutečným jménem databázového serveru:
   ```
   {
     "server": "PCXXX",
