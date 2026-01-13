@@ -19,7 +19,7 @@ Aplikace využívá následující software:
       - AUTHENTICATION: SQL Server authentication
       - PASSWORD: admin
       - USER MUST CHANGE PASSWORD: no
-      - DEFAULT DATAVASE: db_library
+      - DEFAULT DATABASE: db_library
 
       V záložce "User mapping" pak nastavte mapování mezi databází ```db_library``` a oprávněním ```db_owner```.
   4. Spojení otestujte tak, že kliknete v záložce "Object explorer" znovu na tlačítko "Connect" a vytvoříte druhé připojení pomocí tohoto uživatele.
